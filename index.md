@@ -2,9 +2,9 @@
 ![](images/gopher2222.jpeg)
 ## 为什么要学习 GO 语言
 ```
-GO 是互联网时代的 C 语言  		by 许式伟 
+GO 是互联网时代的 C 语言 by 许式伟 
 ```
-1. 天生支持高并发，goroutine, channel
+1. 天生支持高并发，goroutine, channel, netpoll
 
 2. 工程哲学，简约，非学术语言。关键字 25 个，想比 c 语言 32, java 53, c++ 62 ...
 ```
