@@ -18,7 +18,7 @@ package import go goto defer return var const type  func map chan interface stru
 ## 语言方面的对比
 开宗明义，莫要唯语言论，没有最好，只有适合
 ### 从小处看工程哲学
-```
+```c
 # cat test.c
 #include <stdio.h>
 
@@ -30,7 +30,7 @@ int main(){
 # gcc test.c && ./a.out
 value: 319529014, sizeof: 4
 ```
-```
+```go
 # cat test.go
 package main
 
@@ -46,7 +46,7 @@ value: 0, sizeof: 8
 ```
 分析：大学时代，老师教我们 int 是四字节，有符号最大 21 亿，无符号 42 亿。如果 c 语言中一个变量未初始化，那么值可能是随机的， 因为创建局部变量只是 bp 指针向下移动而己。但，现在都 9012 年了，64 位系统己成主流，不必在按位去使用内存，所以 go 语言默认 64 位的 int 就是 8 字节大小。创建变量时，go 也会直接初始化成零值，防止不必要的问题，从实践中来到实践中去。
 
-```
+```c
 int binary_search(int * list,int len,int target){
     int low = 0;
     int hight = len-1;
@@ -72,7 +72,7 @@ int binary_search(int * list,int len,int target){
 分析：这是 c 语言写的二分查找算法，在很长一段时间里都是不能正确工作，原因就在于 mid 求值可能会溢出
 
 ### 垃圾回收，不用关心内存分配与回收
-```
+```go
 package main
 
 import "fmt"
@@ -107,7 +107,7 @@ $ go build -gcflags='-m' test.go
 ```
 分析：`genSlice` 分配了一块内存，初始化后返回给调用者，使用后无需主动释放，由 GC 垃圾回收。严格来讲，使用者无法决定某变量在堆还是栈上分配，也可以说 GO 淡化了堆栈的概念与界线。
 
-```
+```c
 static int __netif_hw_addr_add(struct netif_hw_addr_list *list,
                                const struct ether_addr *addr)
 {
@@ -135,7 +135,7 @@ static int __netif_hw_addr_add(struct netif_hw_addr_list *list,
 ```
 分析：底层开发者，上手一段 c/c++ 代码，能区分变量分配在堆或是栈上，是一种常识与基本功。但是广大的 php, python 动态语言开发者可能就没那么容易。
 ### defer 与 RAII
-```
+```go
 func (o *Once) Do(f func()) {
 	if atomic.LoadUint32(&o.done) == 1 {
 		return
@@ -149,7 +149,7 @@ func (o *Once) Do(f func()) {
 	}
 }
 ```
-```
+```c++
 class DBCon{
 public:
   DBCon() { 
@@ -179,7 +179,7 @@ public:
 分析：RAII 在 c++ 项目中应用广泛，一般用于获取锁或是竞争资源，退出作用域时自动释放。GO 常用 defer 来实现此功能，在函数返回前，按 FILO 的顺序执行注册的 defer 函数。
 
 ### GMP 并发模型
-```
+```go
 func OpenDB(c driver.Connector) *DB {
 	ctx, cancel := context.WithCancel(context.Background())
 	db := &DB{
@@ -207,7 +207,7 @@ func OpenDB(c driver.Connector) *DB {
 * 处于阻塞状态的 G，收到数据后被唤醒，置于 P 的待运行 G 队列中，等待调度
 
 ### CSP 交互模型
-```
+```go
 func (db *DB) connectionResetter(ctx context.Context) {
 	for {
 		select {
