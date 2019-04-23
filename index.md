@@ -236,15 +236,41 @@ func (db *DB) connectionOpener(ctx context.Context) {
 ```
 分析：CSP（Communicating Sequential Process）一种描述并发系统交互模式的形式化语言，其交互模式是通过channel进行消息传递。GO 语言哲学，Don't communicate by sharing memory, share memory by communicating. 通过 channel 很容易实现消息传递，数据通信，超时退出等等。[channel](https://www.jianshu.com/p/39a3637804bb), goroutine, gc, memory 等等都是完整的 runtime 体系，一环扣一环。
 
-### 接口 interface
+### 接口与组合
+```go
+type Reader interface {
+	Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+	Write(p []byte) (n int, err error)
+}
+
+type Closer interface {
+	Close() error
+}
+
+type ReadWriter interface {
+	Reader
+	Writer
+}
+
+type ReadWriteCloser interface {
+	Reader
+	Writer
+	Closer
+}
+```
+分析：在面向对象编程中，可以这么说：“接口定义了对象的行为”， 那么具体的实现行为就取决于对象了。在Go中，接口是一组方法签名。当一个类型为接口中的所有方法提供定义时，它被称为实现该接口。它与oop非常相似。接口指定类型应具有的方法，类型决定如何实现这些方法。
 
 ## 语言生态圈
 ![](images/pop-and-hot-language.jpg)
-[2019 stackoverflow 调查](https://insights.stackoverflow.com/survey/2019)显示，Python 由于 AI 机器学习的加持，持续火热。Java 系在电商及大数据领域，仍然无法撼动。Rust 新兴语言很受重注，尤其是技术范的程序员最喜欢。大家可以自己看看这份调查，很有意思。
+* [2019 stackoverflow 调查](https://insights.stackoverflow.com/survey/2019)显示，Python 由于 AI 机器学习的加持，持续火热。Java 系在电商及大数据领域，仍然无法撼动。Rust 新兴语言很受重注，尤其是技术范的程序员最喜欢。大家可以自己看看这份调查，很有意思。
 ![](images/most-salary.jpg)
-薪水领域的调查，发现 clojure 居然是最高的，排在第二的就是 GO
+* 薪水领域的调查，发现 clojure 居然是最高的，排在第二的就是 GO
 ![](images/tech-stack.jpg)
-技术栈方面的图谱如上所示，左下以互联网 web 开发相关 (JavaScript, HTML/CSS, TypeScript, and React.js) 通过 DB 与微软的技术 (with C#, Visual Studio, and .NET Core) 连通，是一块大的技术栈。 一部份是移动互联网以 Java, Kotlin, Android, iOS 为主，一部份是云服务，以 Docker, AWS, K8S 做为主要生态。 当然最重要的大数据生态来自 Scala/Spark/Hadoop. 通过这里可以看过，每种语言都有自己的领域，没有最好，只有更合适
+* 技术栈方面的图谱如上所示，左下以互联网 web 开发相关 (JavaScript, HTML/CSS, TypeScript, and React.js) 通过 DB 与微软的技术 (with C#, Visual Studio, and .NET Core) 连通，是一块大的技术栈。 一部份是移动互联网以 Java, Kotlin, Android, iOS 为主，一部份是云服务，以 Docker, AWS, K8S 做为主要生态。 当然最重要的大数据生态来自 Scala/Spark/Hadoop. 
+* 通过这里可以看过，每种语言都有自己的领域，没有最好，只有更合适
 ## 小白如何入门
 ## 老鸟如何进阶
 
