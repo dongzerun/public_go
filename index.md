@@ -307,6 +307,8 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 * 泛型：主流的有两种泛型实现，c++ 的模版，编绎期实现和 java 系的运行期实现。目前 GO 同一个算法只能手写多份不同类型的代码，虽然 interface{} 一定程度可以代替，但还是挫
 * 依赖包：还是不成熟，从最早的 go vendor, godeps 再到 glide，都是实验品，当前官方主推 go module，看看效果吧。
 
+最初 GO 语言的定位是系统编程语言，但是由于 GC 的存在，系统编程仍然是 c/c++ 占主导，甚至不如 Rust. 在大数据和电商领域，由于己经成熟的决解方案，Java 仍是最好的选择。目前 GO 在云领域没有对手，docker, k8s 就是主打产品，在主流互联网公司，GO 一般用于 IO 类型的业务开发，比如滴滴中台。
+
 ## 语言生态圈
 ![](images/pop-and-hot-language.jpg)
 * [2019 stackoverflow 调查](https://insights.stackoverflow.com/survey/2019)显示，Python 由于 AI 机器学习的加持，持续火热。Java 系在电商及大数据领域，仍然无法撼动。Rust 新兴语言很受重注，尤其是技术范的程序员最喜欢。大家可以自己看看这份调查，很有意思。
