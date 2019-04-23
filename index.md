@@ -238,30 +238,69 @@ func (db *DB) connectionOpener(ctx context.Context) {
 
 ### 接口与组合
 ```go
-type Reader interface {
-	Read(p []byte) (n int, err error)
+// 代理接口，后端可以自定义实现接口即可
+type Delegater interface {
+	LockWithToken(key, value string, duration int) error
+	UnLockWithToken(key, value string, force bool) error
 }
 
-type Writer interface {
-	Write(p []byte) (n int, err error)
+type RedisDelegater struct {
+	*RedisClient
 }
 
-type Closer interface {
-	Close() error
+func (r *RedisDelegater) LockWithToken(key, value string, duration int) error {
+	conn, err := r.RedisClient.GetConn()
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	ret, err := redis.Int(conn.Do("EVAL", LuaLock, 1, key, value, duration))
+	if err != nil {
+		return fmt.Errorf("%s %v", LuaLock, err)
+	}
+
+	switch ret {
+	case 0, 1:
+		return nil
+	case 2:
+		return ErrLockFailed
+	}
+	return ErrUnknown
 }
 
-type ReadWriter interface {
-	Reader
-	Writer
-}
+func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
+	conn, err := r.RedisClient.GetConn()
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
 
-type ReadWriteCloser interface {
-	Reader
-	Writer
-	Closer
+	var ret int
+	if force {
+		ret, err = redis.Int(conn.Do("EVAL", LuaUnLockForce, 1, key, value))
+	} else {
+		ret, err = redis.Int(conn.Do("EVAL", LuaUnLock, 1, key, value))
+	}
+	if err != nil {
+		return err
+	}
+
+	// 强制解锁不理会返回值 ret
+	if force {
+		return nil
+	}
+
+	switch ret {
+	case 0, 1:
+		return nil
+	case 2:
+		return ErrUnLockFailed
+	}
+	return ErrUnknown
 }
 ```
-分析：在面向对象编程中，可以这么说：“接口定义了对象的行为”， 那么具体的实现行为就取决于对象了。在Go中，接口是一组方法签名。当一个类型为接口中的所有方法提供定义时，它被称为实现该接口。它与oop非常相似。接口指定类型应具有的方法，类型决定如何实现这些方法。
+分析：[dlock](https://github.com/dongzerun/dlock) 基于 redis 实现的分布式锁，在 GO 语言中只要结构实现了接口中的所有方法，那么就说这个结构体实现某个接口，而不用显示声明。在面向对象编程中，可以这么说：“接口定义了对象的行为”， 那么具体的实现行为就取决于对象了。在Go中，接口是一组方法签名。当一个类型为接口中的所有方法提供定义时，它被称为实现该接口。它与oop非常相似。接口指定类型应具有的方法，类型决定如何实现这些方法。
 
 ## 语言生态圈
 ![](images/pop-and-hot-language.jpg)
