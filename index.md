@@ -341,4 +341,4 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 
 4. 开始阅读 go 源码，推荐先阅读标准库，比如 io, http, net 等等门槛低的，再去阅读 slice, channel, map, string 等数据结构，最后再阅读 runtime 以及汇编
 
-![](images/only_money_can_persuade_me.jpg)
+<div align=center>![](images/only_money_can_persuade_me.jpg)
