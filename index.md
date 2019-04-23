@@ -207,6 +207,7 @@ func OpenDB(c driver.Connector) *DB {
 * 处于阻塞状态的 G，收到数据后被唤醒，置于 P 的待运行 G 队列中，等待调度
 
 ### CSP 交互模型
+大佬 robe pike 写过一篇文章 [concurrency-is-not-parallelism](https://talks.golang.org/2012/waza.slide#50), 专门介绍并发与并行的关系，其中就涉及到使用 channel 来消息通信
 ```go
 func (db *DB) connectionResetter(ctx context.Context) {
 	for {
