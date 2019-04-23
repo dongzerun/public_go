@@ -12,8 +12,8 @@ package import go goto defer return var const type  func map chan interface stru
 ```
 
 3. 语法简单，[少即是多](https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html)，学习曲线平坦
-4. 作者 Robert Griesemer、Rob Pike、Ken Thompson， 
-5. 静态，强一致类型语言，线上运行稳定安全
+4. 作者 Robert Griesemer、Rob Pike、Ken Thompson， 大牛云集，质量得以保证
+5. 静态，强一致类型语言，开发效率高兼具线上运行稳定安全
 
 ## 语言方面的对比
 开宗明义，莫要唯语言论，没有最好，只有适合
@@ -234,8 +234,17 @@ func (db *DB) connectionOpener(ctx context.Context) {
 	}
 }
 ```
+分析：CSP（Communicating Sequential Process）一种描述并发系统交互模式的形式化语言，其交互模式是通过channel进行消息传递。GO 语言哲学，Don't communicate by sharing memory, share memory by communicating. 通过 channel 很容易实现消息传递，数据通信，超时退出等等。[channel](https://www.jianshu.com/p/39a3637804bb), goroutine, gc, memory 等等都是完整的 runtime 体系，一环扣一环。
 
-## GO 语言生态圈
+### 接口 interface
+
+## 语言生态圈
+![](images/pop-and-hot-language.jpg)
+[2019 stackoverflow 调查](https://insights.stackoverflow.com/survey/2019)显示，Python 由于 AI 机器学习的加持，持续火热。Java 系在电商及大数据领域，仍然无法撼动。Rust 新兴语言很受重注，尤其是技术范的程序员最喜欢。大家可以自己看看这份调查，很有意思。
+![](images/most-salary.jpg)
+薪水领域的调查，发现 clojure 居然是最高的，排在第二的就是 GO
+![](images/tech-stack.jpg)
+技术栈方面的图谱如上所示，左下以互联网 web 开发相关 (JavaScript, HTML/CSS, TypeScript, and React.js) 通过 DB 与微软的技术 (with C#, Visual Studio, and .NET Core) 连通，是一块大的技术栈。 一部份是移动互联网以 Java, Kotlin, Android, iOS 为主，一部份是云服务，以 Docker, AWS, K8S 做为主要生态。 当然最重要的大数据生态来自 Scala/Spark/Hadoop. 通过这里可以看过，每种语言都有自己的领域，没有最好，只有更合适
 ## 小白如何入门
 ## 老鸟如何进阶
 
