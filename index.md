@@ -323,7 +323,7 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ### 小白如何入门
 相比其它劝退型语言，Rust, Scala, Clojure 等等，GO 学习曲线最为平坦，容易上手也是他的最大优点之一。我也是从小白走过来的，分享几点我的学习方法。
 
-1. 找本比较受欢迎的电子书，学习 GO 基础语法，数据结构，slice, channel, goroutine, map 等等，先夯实基础
+1. 找本比较受欢迎的电子书，强推[雨痕笔记](https://github.com/qyuhen)。学习 GO 基础语法，数据结构，slice, channel, goroutine, map 等等，先夯实基础
 2. 找准定位，根据自身职位找相关开源优秀代码学习。可以参考 [awesome-go](https://github.com/go-awesome/awesome-go)，比如 DBA 可以读读 Codis 代码，读读 Redis Go Driver. 还有最近兴起的 gh-ost 等等
 3. 最后一定要找机会上手实战，运维同学可以写一些小工具脚本。后端开发者，如果是微服务，完全可以说服领导偿试换新的语言，这里建义有精力可以重写业务模块，然后导流观察性能，用事实说话
 
