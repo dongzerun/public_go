@@ -15,7 +15,7 @@ package import go goto defer return var const type  func map chan interface stru
 4. 作者 Robert Griesemer、Rob Pike、Ken Thompson， 大牛云集，质量得以保证
 5. 静态，强一致类型语言，开发效率高兼具线上运行稳定安全
 
-## 语言方面的对比
+## 语言方面的对比 优点
 开宗明义，莫要唯语言论，没有最好，只有适合
 ### 从小处看工程哲学
 ```c
@@ -301,6 +301,11 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 }
 ```
 分析：[dlock](https://github.com/dongzerun/dlock) 基于 redis 实现的分布式锁，在 GO 语言中只要结构实现了接口中的所有方法，那么就说这个结构体实现某个接口，而不用显示声明。在面向对象编程中，可以这么说：“接口定义了对象的行为”， 那么具体的实现行为就取决于对象了。在Go中，接口是一组方法签名。当一个类型为接口中的所有方法提供定义时，它被称为实现该接口。它与oop非常相似。接口指定类型应具有的方法，类型决定如何实现这些方法。
+
+## 语言方面的对比 缺点
+* GC：当前仍然是三色标记算法，毕竟不如 Java 调教的久，可能以后也会变成分代收集。关于 GC 的坑，可以参考我的 [记一次GC引起的问题排查](https://www.jianshu.com/p/0791c35d3609)
+* 泛型：主流的有两种泛型实现，c++ 的模版，编绎期实现和 java 系的运行期实现。目前 GO 同一个算法只能手写多份不同类型的代码，虽然 interface{} 一定程度可以代替，但还是挫
+* 依赖包：还是不成熟，从最早的 go vendor, godeps 再到 glide，都是实验品，当前官方主推 go module，看看效果吧。
 
 ## 语言生态圈
 ![](images/pop-and-hot-language.jpg)
