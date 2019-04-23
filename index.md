@@ -317,7 +317,23 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ![](images/tech-stack.jpg)
 * 技术栈方面的图谱如上所示，左下以互联网 web 开发相关 (JavaScript, HTML/CSS, TypeScript, and React.js) 通过 DB 与微软的技术 (with C#, Visual Studio, and .NET Core) 连通，是一块大的技术栈。 一部份是移动互联网以 Java, Kotlin, Android, iOS 为主，一部份是云服务，以 Docker, AWS, K8S 做为主要生态。 当然最重要的大数据生态来自 Scala/Spark/Hadoop. 
 * 通过这里可以看过，每种语言都有自己的领域，没有最好，只有更合适
-## 小白如何入门
-## 老鸟如何进阶
+
+
+## 分享我的学习路径
+### 小白如何入门
+相比其它劝退型语言，Rust, Scala, Clojure 等等，GO 学习曲线最为平坦，容易上手也是他的最大优点之一。我也是从小白走过来的，分享几点我的学习方法。
+
+1. 找本比较受欢迎的电子书，学习 GO 基础语法，数据结构，slice, channel, goroutine, map 等等，先夯实基础
+2. 找准定位，根据自身职位找相关开源优秀代码学习。可以参考 [awesome-go](https://github.com/go-awesome/awesome-go)，比如 DBA 可以读读 Codis 代码，读读 Redis Go Driver. 还有最近兴起的 gh-ost 等等
+3. 最后一定要找机会上手实战，运维同学可以写一些小工具脚本。后端开发者，如果是微服务，完全可以说服领导偿试换新的语言，这里建义有精力可以重写业务模块，然后导流观察性能，用事实说话
+
+4. 阅读相关博客，比如别人走的坑，推荐看 [go中国社区](https://gocn.io/)，至少 astaxie 还在维护
+
+### 老鸟如何进阶
+语言进阶很不容易，这里推荐[《Go语言高级编程》](https://github.com/chai2010/advanced-go-programming-book), 很快也会出版纸制书
+
+1. 第一步需要大量的实践，代码写的多了，屎堆的多才能深刻理解工程管理以及规则，这点所有语言通用
+2. 寻找优秀开源项目学习源码，推荐先从小项目开始，再逐渐到大项目，学习工程规划，多阅读 issue，如果自己可以提 pr 也可以参与其中
+3. 开始阅读 go 源码，推荐先阅读标准库，比如 io, http, net 等等门槛低的，再去阅读 slice, channel, map, string 等数据结构，最后再阅读 runtime 以及汇编
 
 ![](images/only_money_can_persuade_me.jpg)
