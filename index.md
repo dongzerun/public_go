@@ -91,7 +91,8 @@ func main(){
 	arr := genSlice()
 	fmt.Println(arr[10])
 }
-
+```
+```
 $ go build -gcflags='-m' test.go
 # command-line-arguments
 ./test.go:15:13: inlining call to fmt.Println
