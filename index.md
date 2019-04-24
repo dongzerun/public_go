@@ -334,7 +334,7 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ### 老鸟如何进阶
 语言进阶很不容易，这里推荐[《Go语言高级编程》](https://github.com/chai2010/advanced-go-programming-book), 很快也会出版纸制书
 
-1. 强烈推荐多接触其它语言，尤其是 c/c++, 多做对比
+1. 强烈推荐多接触其它语言，尤其是 c/c++, 多做对比，理论上来说 c++, go 脱胎于 c, 都能对内存进行精确控制
 
 2. 最重要还是大量的实践，代码写的多了，屎堆的多才能深刻理解工程管理以及规则，这点所有语言通用
 
@@ -342,4 +342,5 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 
 4. 开始阅读 go 源码，推荐先阅读标准库，比如 io, http, net 等等门槛低的，再去阅读 slice, channel, map, string 等数据结构，最后再阅读 runtime 以及汇编
 
+## 学习无止境，如有错误，欢迎斧正
 ![](images/only_money_can_persuade_me.jpg)
