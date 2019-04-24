@@ -6,7 +6,7 @@ GO 是互联网时代的 C 语言 by 许式伟
 ```
 1. 天生支持高并发，goroutine, channel, netpoll
 
-2. 工程哲学，简约，非学术语言。关键字 25 个，想比 c 语言 32, java 53, c++ 62 ...
+2. 工程哲学，简约，非学术语言。关键字 25 个，相比 c 语言 32, java 53, c++ 62 ...
 ```
 package import go goto defer return var const type  func map chan interface struct range select for continue break switch case default fallthrough if  else
 ```
