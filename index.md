@@ -13,7 +13,7 @@ package import go goto defer return var const type  func map chan interface stru
 
 3. 语法简单，[少即是多](https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html)，学习曲线平坦
 4. 作者 Robert Griesemer、Rob Pike、Ken Thompson， 大牛云集，质量得以保证
-5. 静态，强一致类型语言，开发效率高兼具线上运行稳定安全
+5. 静态，强一致类型语言，开发效率高兼具线上运行稳定安全，小白也能轻松写出高并发代码
 
 ## 语言方面的优点
 开宗明义，莫要唯语言论，没有最好，只有适合
@@ -206,6 +206,8 @@ func OpenDB(c driver.Connector) *DB {
 * P 拥有本地 G 队列，优先运行本地 G，本地没有时执行全局队列，或是 steal 偷其它 P 的数据
 * P 只是逻辑执行器，执行时必须绑定一个空闲的 M，PM 对可以运行多个 G，如果处于阻塞状态，那么 PM 分离，P 重新获取空闲 M 去运行新的 G
 * 处于阻塞状态的 G，收到数据后被唤醒，置于 P 的待运行 G 队列中，等待调度
+
+刚工作时，听说别人封装个 c++ asyncio, 就觉得好高大上，GO 的出现，让这些纷纷跌落神坛，从此**高并发**飞入寻常百姓家。
 
 ### CSP 交互模型
 大佬 robe pike 写过一篇文章 [concurrency-is-not-parallelism](https://talks.golang.org/2012/waza.slide#50), 专门介绍并发与并行的关系，其中就涉及到使用 channel 来消息通信
