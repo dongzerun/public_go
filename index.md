@@ -348,8 +348,17 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ## 语言方面的缺点
 
 * GC：当前仍然是三色标记算法，毕竟不如 Java 调教的久，可能以后也会变成分代收集。关于 GC 的坑，可以参考我的 [记一次GC引起的问题排查](https://www.jianshu.com/p/0791c35d3609)
+```
+衡量 GC 能力有两个指标 Throughput VS Latency
+```
 
 * 泛型：主流的有两种泛型实现，c++ 的模版，编绎期实现和 java 系的运行期实现。目前 GO 同一个算法只能手写多份不同类型的代码，虽然 interface{} 一定程度可以代替，但还是挫
+```scala
+abstract class RDD[T: ClassTag](
+    @transient private var _sc: SparkContext,
+    @transient private var deps: Seq[Dependency[_]]
+  ) extends Serializable with Logging {
+```
 
 * 依赖：还是不成熟，从最早的 go vendor, godeps 再到 glide，都是实验品，当前官方主推 go module，看看效果吧。
 
