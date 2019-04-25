@@ -377,7 +377,7 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 
 2. 找准定位，根据自身职位找相关开源优秀代码学习。可以参考 [awesome-go](https://github.com/go-awesome/awesome-go)，比如 DBA 可以读读 [Codis](https://github.com/CodisLabs/codis) 代码，读读 Redis Go Driver. 还有最近兴起的 [gh-ost](https://github.com/github/gh-ost), [orchestrator](https://github.com/github/orchestrator), [go-mysql](https://github.com/siddontang/go-mysql) 等等
 
-3. 最后一定要找机会上手实战，运维同学可以写一些小工具脚本。后端开发者，如果是微服务，完全可以说服领导偿试换新的语言，这里建义有精力可以重写业务模块，然后导流观察性能，用事实说话
+3. 最后一定要找机会上手实战，运维同学可以写一些小工具脚本，或是造个 xtracbakup 的轮子，即能练习 go 又加深对 mysql 理解。后端开发者，如果是微服务，完全可以说服领导偿试换新的语言，这里建义有精力可以重写业务模块，然后导流观察性能，用事实说话
 
 4. 阅读相关博客，比如别人走的坑，推荐看 [go中国社区](https://gocn.io/)，至少 astaxie 还在维护
 
