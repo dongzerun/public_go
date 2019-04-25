@@ -395,6 +395,13 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 5. 寻找优秀开源项目学习源码，推荐先从小项目开始，再逐渐到大项目，学习工程规划，接口设计。多阅读 issue，如果自己可以提 pr 也可以参与其中
 
 
+最后，可能很多人还不会用 `godoc`
 
+```
+# godoc -http=:6060
+```
+
+然后在 chrome 就可以打开官方库
+![](images/godoc.jpg)
 ## 学习无止境，如有错误，欢迎斧正
 ![](images/only_money_can_persuade_me.jpg)
