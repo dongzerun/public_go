@@ -341,8 +341,11 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 * GO 提倡[使用组合而不是继承](https://studygolang.com/articles/17257), 各有优缺点。组合一般理解为 has-a 的关系，继承是is-a的关系，组合的耦合性低，更偏向于面向接口编程。
 
 ## 语言方面的缺点
+
 * GC：当前仍然是三色标记算法，毕竟不如 Java 调教的久，可能以后也会变成分代收集。关于 GC 的坑，可以参考我的 [记一次GC引起的问题排查](https://www.jianshu.com/p/0791c35d3609)
+
 * 泛型：主流的有两种泛型实现，c++ 的模版，编绎期实现和 java 系的运行期实现。目前 GO 同一个算法只能手写多份不同类型的代码，虽然 interface{} 一定程度可以代替，但还是挫
+
 * 依赖：还是不成熟，从最早的 go vendor, godeps 再到 glide，都是实验品，当前官方主推 go module，看看效果吧。
 
 最初 GO 语言的定位是系统编程语言，但是由于 GC 的存在，系统编程仍然是 c/c++ 占主导，甚至不如 Rust. 在大数据和电商领域，由于己经成熟的决解方案，Java 仍是最好的选择。目前 GO 在云领域没有对手，docker, k8s 就是主打产品，在主流互联网公司，GO 一般用于非 cpu 密集型的业务，比如滴滴中台，七牛的 cdn，对象存储
@@ -350,19 +353,25 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ## 语言生态圈
 ![](images/pop-and-hot-language.jpg)
 * [2019 stackoverflow 调查](https://insights.stackoverflow.com/survey/2019)显示，Python 由于 AI 机器学习的加持，持续火热。Java 系在电商及大数据领域，仍然无法撼动。Rust 新兴语言很受重注，尤其是技术范的程序员最喜欢。大家可以自己看看这份调查，很有意思。
+
 ![](images/most-salary.jpg)
 * 薪水领域的调查，发现 clojure 居然是最高的，排在第二的就是 GO
+
 ![](images/tech-stack.jpg)
 * 技术栈方面的图谱如上所示，左下以互联网 web 开发相关 (JavaScript, HTML/CSS, TypeScript, and React.js) 通过 DB 与微软的技术 (with C#, Visual Studio, and .NET Core) 连通，是一块大的技术栈。 一部份是移动互联网以 Java, Kotlin, Android, iOS 为主，一部份是云服务，以 Docker, AWS, K8S 做为主要生态。 当然最重要的大数据生态来自 Scala/Spark/Hadoop. 
+
 * 通过这里可以看过，每种语言都有自己的领域，没有最好，只有更合适
 
 
 ## 分享我的学习路径
+
 ### 小白如何入门
 相比其它劝退型语言，Rust, Scala, Clojure 等等，GO 学习曲线最为平坦，容易上手也是他的最大优点之一。我也是从小白走过来的，分享几点我的学习方法。
 
 1. 找本比较受欢迎的电子书，强推[雨痕笔记](https://github.com/qyuhen)。学习 GO 基础语法，数据结构，slice, channel, goroutine, map 等等，先夯实基础
+
 2. 找准定位，根据自身职位找相关开源优秀代码学习。可以参考 [awesome-go](https://github.com/go-awesome/awesome-go)，比如 DBA 可以读读 [Codis](https://github.com/CodisLabs/codis) 代码，读读 Redis Go Driver. 还有最近兴起的 [gh-ost](https://github.com/github/gh-ost), [orchestrator](https://github.com/github/orchestrator), [go-mysql](https://github.com/siddontang/go-mysql) 等等
+
 3. 最后一定要找机会上手实战，运维同学可以写一些小工具脚本。后端开发者，如果是微服务，完全可以说服领导偿试换新的语言，这里建义有精力可以重写业务模块，然后导流观察性能，用事实说话
 
 4. 阅读相关博客，比如别人走的坑，推荐看 [go中国社区](https://gocn.io/)，至少 astaxie 还在维护
@@ -370,13 +379,15 @@ func (r *RedisDelegater) UnLockWithToken(key, value string, force bool) error {
 ### 老鸟如何进阶
 语言进阶很不容易，这里推荐[《Go语言高级编程》](https://github.com/chai2010/advanced-go-programming-book), 很快也会出版纸制书
 
-1. 强烈推荐多接触其它语言，尤其是 c/c++, 多做对比，理论上来说 c++, go 脱胎于 c
+1. 打好计算机体系基础，编绎原理，体系架构，功夫在诗外，拼的是内功(我还在补...)
 
-2. 最重要还是大量的实践，代码写的多了，屎堆的多才能深刻理解工程管理以及规则，这点所有语言通用
+2. 强烈推荐多接触其它语言，尤其是 c/c++, 多做对比，理论上来说 c++, go 脱胎于 c
 
-3. 开始阅读 go 源码，推荐先阅读标准库，比如 io, http, net 等等门槛低的，再去阅读 slice, channel, map, string 等数据结构，最后再阅读 runtime 以及汇编
+3. 最重要还是大量的实践，代码写的多了，屎堆的多才能深刻理解工程管理以及规则，这点所有语言通用
 
-4. 寻找优秀开源项目学习源码，推荐先从小项目开始，再逐渐到大项目，学习工程规划，接口设计。多阅读 issue，如果自己可以提 pr 也可以参与其中
+4. 开始阅读 go 源码，推荐先阅读标准库，比如 io, http, net 等等门槛低的，再去阅读 slice, channel, map, string 等数据结构(有时你会发现，标准库有的实现也很挫)，最后再阅读 runtime 以及汇编
+
+5. 寻找优秀开源项目学习源码，推荐先从小项目开始，再逐渐到大项目，学习工程规划，接口设计。多阅读 issue，如果自己可以提 pr 也可以参与其中
 
 
 
