@@ -12,7 +12,9 @@ package import go goto defer return var const type  func map chan interface stru
 ```
 
 3. 语法简单，[少即是多](https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html)，学习曲线平坦
+
 4. 作者 Robert Griesemer、Rob Pike、Ken Thompson， 大牛云集，质量得以保证
+
 5. 静态，强一致类型语言，开发效率高兼具线上运行稳定安全，小白也能轻松写出高并发代码
 
 ## 语言方面的优点
