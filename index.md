@@ -233,7 +233,7 @@ func OpenDB(c driver.Connector) *DB {
 * P 只是逻辑执行器，执行时必须绑定一个空闲的 M，PM 对可以运行多个 G，如果处于阻塞状态，那么 PM 分离，P 重新获取空闲 M 去运行新的 G
 * 处于阻塞状态的 G，收到数据后被唤醒，置于 P 的待运行 G 队列中，等待调度
 
-刚工作时，别人封装个 c++ asyncio, 就觉得好高大上，并发编程框架的轮子满天飞。GO 的出现，让这些纷纷跌落神坛，从此**高并发**飞入寻常百姓家。
+刚工作时，别人封装个 c++ asyncio, 就觉得好高大上，并发编程框架的轮子满天飞。GO 的出现，让这些纷纷跌落神坛，从此 **高并发** 飞入寻常百姓家。
 
 ### CSP 交互模型
 大佬 robe pike 写过一篇文章 [concurrency-is-not-parallelism](https://talks.golang.org/2012/waza.slide#50), 专门介绍并发与并行的关系，其中就涉及到使用 channel 来消息通信
